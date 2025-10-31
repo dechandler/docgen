@@ -11,22 +11,26 @@ from docgen import (DocgenConfig, DocgenApi)
 # from .exceptions import ()
 
 
+log = logging.getLogger("docgen-readme-gen")
+
+
 def _main():
 
-    config = DocgenConfig("docgen-readme")
-    log = config.log
-
-    log.info("Starting Resume Renderer")
-    log.debug(f"  PID: {os.getpid()}")
-    log.debug(f"  Args: {sys.argv[1:]}")
-
     try:
-        data_name, template_filename = [*sys.argv[1:]]
+        data_name, tmpl_name = [*sys.argv[1:]]
     except ValueError:
         log.error("Wrong number of args")
         sys.exit(1)
 
-    api = DocgenApi()
+    config = DocgenConfig(log)
+
+    log.info("Starting Docgen README update")
+    log.debug(f"  PID: {os.getpid()}")
+    log.debug(f"  Args: {sys.argv[1:]}")
+
+
+    api = DocgenApi(self.config)
+    api.render(tmpl_name, data_name, f"{data_name}-{tmpl_name}")
 
 
 def main():
