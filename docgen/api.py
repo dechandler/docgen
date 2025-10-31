@@ -1,5 +1,8 @@
+"""
 
-import logging
+
+
+"""
 import os
 
 import docxtpl
@@ -7,14 +10,10 @@ import jinja2
 import yaml
 
 from declib import DeclibApi
-
-from .data import RenderDataLoader
-
-
-log = logging.getLogger("resume-render")
+from declib.utils import MarkYamlDataLoader
 
 
-class RenderApi(DeclibApi):
+class DocgenApi(DeclibApi):
 
     def __init__(self, config):
 
@@ -24,7 +23,7 @@ class RenderApi(DeclibApi):
     def get_data(self, data_name):
 
         data_path = os.path.join(self.config['data_dir'], f"{data_name}.md")
-        return RenderDataLoader(data_path).data
+        return MarkYamlDataLoader(data_path).data
 
 
     def render(self, tmpl_name, data_name, out_name):
@@ -67,7 +66,7 @@ class RenderApi(DeclibApi):
 
     def docx_to_pdf(self, docx_path, out_dir):
 
-        log.info(f"Converting {docx_path} into a PDF file in {out_dir}")
+        self.log.info(f"Converting {docx_path} into a PDF file in {out_dir}")
         self.run_command(
             [
                 "soffice",
