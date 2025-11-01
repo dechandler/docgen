@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docgen"
+version = "0.0.1"
+authors = [
+    { name="David Chandler", email="contact@dechandler.io" }
+]
+description = "Render documents from data and templates"
+readme = "README.md"
+
+license = "BSD-2-Clause"
+license-files = ["LICENSE"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 3 - Alpha"
+]
+
+requires-python = ">3.8"
+
+dependencies = [
+    "pyyaml",
+    "declib @ git+https://github.com/dechandler/declib",
+]
+
+
+[project.urls]
+"Code" = "https://github.com/dechandler/docgen"
+"Documentation" = "https://github.com/dechandler/docgen/README.md"
+
+
+[tool.setuptools]
+packages = ["docgen"]
